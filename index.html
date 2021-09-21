@@ -28,18 +28,18 @@
         
         if (state == 0) {
             buttonContainer.disabled = true;
-            messageContainer.innerText = "Please scan QR code of beacon";
+            messageContainer.innerText = "Please scan QR code of beacon.";
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
             buttonContainer.disabled = true;
             beaconResult = lastResult;
-            messageContainer.innerText = "Please scan QR code of asset";
+            messageContainer.innerText = "Please scan QR code of asset.";
             resultContainer.innerText = "";
         } else if (state == 2) {
             buttonContainer.disabled = true;
             assetResult = lastResult;
-            messageContainer.innerText = "Assign beacon to asset";
+            messageContainer.innerText = "Assigning beacon to asset...";
             resultContainer.innerText = beaconResult + '</br>' + assetResult;
             readerContainer.style.display = "none";
             
@@ -47,14 +47,12 @@
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
                      buttonContainer.disabled = false;
-                     messageContainer.innerText = "Done";
+                     messageContainer.innerText = "Assigned beacon to asset successfully.";
                      resultContainer.innerText = "" 
                  }
             };
             xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
             xhttp.send();
-        } else if (state == 3) {
-            buttonContainer.disabled = false;
         }
     }
     

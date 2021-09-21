@@ -78,12 +78,9 @@
                  alert(this.responseText);
              }
         };
-        xhttp.open("POST", "http://127.0.0.1:1880/assign", true);
+        xhttp.open("GET", "http://127.0.0.1:1880/assign", true);
         xhttp.setRequestHeader("Content-type", "application/json");
-        var payload = {
-            'test': 123
-        };
-        xhttp.send("");
+        xhttp.send();
 </script>
 </head>
 </html>

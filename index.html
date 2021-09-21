@@ -3,7 +3,7 @@
     <title>Html-Qrcode Demo</title>
 <body>
     <div id="qr-reader-message"></div>
-    <div id="qr-reader" style="width:100%"></div>
+    <div id="qr-reader" style="width:50%"></div>
     <div id="qr-reader-result"></div>
     <button id="qr-reader-button" type="button" onclick="buttonClicked()" style="width:100%" disabled>Next</button>
 </body>
@@ -43,6 +43,7 @@
             resultContainer.innerText = beaconResult + '</br>' + assetResult;
             readerContainer.style.display = "none";
             
+            /*
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
@@ -53,6 +54,7 @@
             };
             xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
             xhttp.send();
+            */
         }
     }
     

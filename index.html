@@ -71,7 +71,17 @@
         html5QrcodeScanner.render(onScanSuccess);
         
         messageContainer.innerText = "Please scan QR code of beacon";
-
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+                 alert(this.responseText);
+             }
+        };
+        xhttp.open("GET", "http://127.0.0.1:1880/assign", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    });
 </script>
 </head>
 </html>

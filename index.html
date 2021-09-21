@@ -12,24 +12,32 @@
     var messageContainer = document.getElementById('qr-reader-message');
     var resultContainer = document.getElementById('qr-reader-result');
     var buttonContainer = document.getElementById('qr-reader-button');
-    var lastResult, countResults = 0;
+    var lastResult = 0;
     var state = 0;
     
     function buttonClicked() {
         state++;
         
-        if (state > 2) {
+        if (state > 3) {
             state = 0;
         }
         
         if (state == 0) {
-            messageContainer.innerText = "Please scan QR code of beacon.";
+            messageContainer.innerText = "Please scan QR code of beacon";
             buttonContainer.disabled = true;
+            resultContainer.innerText = "";
         } else if (state == 1) {
-            messageContainer.innerText = "Please scan QR code of asset.";
+            messageContainer.innerText = "Please scan QR code of asset";
             buttonContainer.disabled = true;
+            resultContainer.innerText = "";
         } else if (state == 2) {
-            messageContainer.innerText = "Assign beacon to asset.";
+            messageContainer.innerText = "Assign beacon to asset";
+            resultContainer.innerText = "";
+        } else if (state == 3) {
+            messageContainer.innerText = "Done";
+            resultContainer.innerText = "";   
+            
+            // send to server
         }
     }
     
@@ -47,7 +55,6 @@
     docReady(function () {
         function onScanSuccess(decodedText, decodedResult) {
             if (decodedText !== lastResult) {
-                ++countResults;
                 lastResult = decodedText;
                 resultContainer.innerText = decodedText;
                 

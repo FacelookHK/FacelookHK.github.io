@@ -37,11 +37,10 @@
             resultContainer.innerText = "";
         } else if (state == 2) {
             buttonContainer.disabled = true;
-            messageContainer.innerText = "Assigning beacon to asset...";
-            resultContainer.innerText = beaconResult + '\r\n' + assetResult;
+            messageContainer.innerText = "Assigning beacon (" + beaconResult + ") to asset (" + assetResult + ")...";
+            resultContainer.innerText = "";
             readerContainer.style.display = "none";
             
-            /*
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
@@ -50,9 +49,8 @@
                      resultContainer.innerText = xhttp.responseText;
                  }
             };
-            xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
+            xhttp.open("GET", "http://127.0.0.1:1880/assign?device=" beaconResult + "&asset=" + assetResult, true);
             xhttp.send();
-            */
         }
     }
     
@@ -79,7 +77,7 @@
                     } else if (state == 1) {
                         assetResult = decodedText;
                     }
-                    resultContainer.innerText = decodedText;
+                    resultContainer.innerText = lastResult;
                   
                     buttonContainer.disabled = false;
                 }

@@ -33,12 +33,10 @@
             readerContainer.style.display = "block";
         } else if (state == 1) {
             buttonContainer.disabled = true;
-            beaconResult = lastResult;
             messageContainer.innerText = "Please scan QR code of asset.";
             resultContainer.innerText = "";
         } else if (state == 2) {
             buttonContainer.disabled = true;
-            assetResult = lastResult;
             messageContainer.innerText = "Assigning beacon to asset...";
             resultContainer.innerText = beaconResult + '\r\n' + assetResult;
             readerContainer.style.display = "none";
@@ -76,11 +74,15 @@
                 var index = decodedText.lastIndexOf('\n');
                 if (index != -1) {
                     decodedText = decodedText.substring(index + 1);
+                    if (state == 0) {
+                        beaconResult = decodedText;
+                    } else if (state == 1) {
+                        assetResult = decodedText;
+                    }
+                    resultContainer.innerText = decodedText;
+                  
+                    buttonContainer.disabled = false;
                 }
-                
-                resultContainer.innerText = decodedText;
-                
-                buttonContainer.disabled = false;
             }
         }
 

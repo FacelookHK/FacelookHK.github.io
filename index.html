@@ -48,7 +48,7 @@
                  if (this.readyState == 4 && this.status == 200) {
                      buttonContainer.disabled = false;
                      messageContainer.innerText = "Assigned beacon to asset successfully.";
-                     resultContainer.innerText = "" 
+                     resultContainer.innerText = xhttp.responseText;
                  }
             };
             xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);

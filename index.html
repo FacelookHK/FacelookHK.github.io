@@ -73,7 +73,7 @@
         messageContainer.innerText = "Please scan QR code of beacon";
         
         const userAction = async () => {
-            const response = await fetch('http://127.0.0.1/assign?device=123&asset=456');
+            const response = await fetch('http://127.0.0.1:1880/assign?device=123&asset=456');
             const myJson = await response.json(); //extract JSON from the http response
                 messageContainer.innerText = myJson;
             }

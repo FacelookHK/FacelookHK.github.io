@@ -5,7 +5,7 @@
     <div id="qr-reader-message"></div>
     <div id="qr-reader" style="width:100%"></div>
     <div id="qr-reader-result"></div>
-    <button id="qr-reader-button" type="button" disabled onclick="buttonClicked()" style="width:100%">Next</button>
+    <button id="qr-reader-button" type="button" onclick="buttonClicked()" style="width:100%">Next</button>
 </body>
 <script src="./html5-qrcode.min.js"></script>
 <script src="./html5-qrcode.min.js"></script>
@@ -32,12 +32,12 @@
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
-            buttonContainer.disabled = true;
+            buttonContainer.disabled = false;
             beaconResult = lastResult;
             messageContainer.innerText = "Please scan QR code of asset";
             resultContainer.innerText = "";
         } else if (state == 2) {
-            buttonContainer.disabled = true;
+            buttonContainer.disabled = false;
             assetResult = lastResult;
             messageContainer.innerText = "Assign beacon to asset";
             resultContainer.innerText = beaconResult + '</br>' + assetResult;
@@ -53,7 +53,7 @@
             xhttp.send();
             
         } else if (state == 3) {
-            buttonContainer.disabled = true;
+            buttonContainer.disabled = false;
             messageContainer.innerText = "Done";
             resultContainer.innerText = "";   
         }
@@ -75,8 +75,6 @@
             if (decodedText !== lastResult) {
                 lastResult = decodedText;
                 resultContainer.innerText = decodedText;
-                
-                buttonContainer.disabled = false;
             }
         }
 

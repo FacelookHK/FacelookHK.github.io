@@ -75,13 +75,13 @@
                 if (index != -1) {
                     decodedText = decodedText.substring(index + 1);
                     if (state == 0) {
-                        if (beaconResult.indexOf('Beacon') == 0) {
+                        if (decodedText.indexOf('Beacon') == 0) {
                             beaconResult = decodedText;
                         } else {
                             return;
                         }
                     } else if (state == 1) {
-                        if (assetResult.indexOf('Seating') == 0 || assetResult.indexOf('Person') == 0) {
+                        if (decodedText.indexOf('Seating') == 0 || decodedText.indexOf('Person') == 0) {
                             assetResult = decodedText;
                         } else {
                             return;

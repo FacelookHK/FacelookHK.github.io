@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Html-Qrcode Demo 2</title>
+    <title>Html-Qrcode Demo</title>
 <body>
     <div id="qr-reader-message"></div>
     <div id="qr-reader" style="width:800px"></div>
@@ -27,6 +27,7 @@
             buttonContainer.disabled = true;
         } else if (state == 1) {
             messageContainer.innerText = "Please scan QR code of asset.";
+            buttonContainer.disabled = true;
         } else if (state == 2) {
             messageContainer.innerText = "Assign beacon to asset.";
         }

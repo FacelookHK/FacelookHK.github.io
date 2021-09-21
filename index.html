@@ -2,9 +2,7 @@
 <head>
     <title>Html-Qrcode Demo 2</title>
 <body>
-    Scanner:
     <div id="qr-reader" style="width:1024px"></div>
-    Results:
     <div id="qr-reader-results"></div>
 </body>
 <script src="./html5-qrcode.min.js"></script>
@@ -29,6 +27,7 @@
                 lastResult = decodedText;
                 // Handle on success condition with the decoded message.
                 console.log(`Scan result ${decodedText}`, decodedResult);
+                resultContainer.innerText = decodedText;
             }
         }
 

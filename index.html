@@ -14,6 +14,8 @@
     var readerContainer = document.getElementById('qr-reader');
     var resultContainer = document.getElementById('qr-reader-result');
     var buttonContainer = document.getElementById('qr-reader-button');
+    var beaconResult = null;
+    var assetResult = null;
     var lastResult = 0;
     var state = 0;
     
@@ -25,23 +27,35 @@
         }
         
         if (state == 0) {
-            messageContainer.innerText = "Please scan QR code of beacon";
             buttonContainer.disabled = true;
+            messageContainer.innerText = "Please scan QR code of beacon";
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
-            messageContainer.innerText = "Please scan QR code of asset";
             buttonContainer.disabled = true;
+            beaconResult = lastResult;
+            messageContainer.innerText = "Please scan QR code of asset";
             resultContainer.innerText = "";
         } else if (state == 2) {
+            buttonContainer.disabled = true;
+            assetResult = lastResult;
             messageContainer.innerText = "Assign beacon to asset";
-            resultContainer.innerText = "";
+            resultContainer.innerText = beaconResult + '</br>' + assetResult;
             readerContainer.style.display = "none";
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                     //alert(this.responseText);
+                 }
+            };
+            xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
+            xhttp.send();
+            
         } else if (state == 3) {
+            buttonContainer.disabled = true;
             messageContainer.innerText = "Done";
             resultContainer.innerText = "";   
-            
-            // send to server
         }
     }
     
@@ -71,15 +85,6 @@
         html5QrcodeScanner.render(onScanSuccess);
         
         messageContainer.innerText = "Please scan QR code of beacon";
-        
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-             if (this.readyState == 4 && this.status == 200) {
-                 alert(this.responseText);
-             }
-        };
-        xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
-        xhttp.send();
     });
 </script>
 </head>

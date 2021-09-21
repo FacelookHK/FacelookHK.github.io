@@ -10,6 +10,7 @@
 <script src="./html5-qrcode.min.js"></script>
 <script>
     var messageContainer = document.getElementById('qr-reader-message');
+    var readerContainer = document.getElementById('qr-reader');
     var resultContainer = document.getElementById('qr-reader-result');
     var buttonContainer = document.getElementById('qr-reader-button');
     var lastResult = 0;
@@ -26,6 +27,7 @@
             messageContainer.innerText = "Please scan QR code of beacon";
             buttonContainer.disabled = true;
             resultContainer.innerText = "";
+            readerContainer.style.visibility = "visible";
         } else if (state == 1) {
             messageContainer.innerText = "Please scan QR code of asset";
             buttonContainer.disabled = true;
@@ -33,6 +35,7 @@
         } else if (state == 2) {
             messageContainer.innerText = "Assign beacon to asset";
             resultContainer.innerText = "";
+            readerContainer.style.visibility = "hidden";
         } else if (state == 3) {
             messageContainer.innerText = "Done";
             resultContainer.innerText = "";   

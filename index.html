@@ -22,7 +22,7 @@
     function buttonClicked() {
         state++;
         
-        if (state > 3) {
+        if (state > 2) {
             state = 0;
         }
         
@@ -32,12 +32,12 @@
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
-            buttonContainer.disabled = false;
+            buttonContainer.disabled = true;
             beaconResult = lastResult;
             messageContainer.innerText = "Please scan QR code of asset";
             resultContainer.innerText = "";
         } else if (state == 2) {
-            buttonContainer.disabled = false;
+            buttonContainer.disabled = true;
             assetResult = lastResult;
             messageContainer.innerText = "Assign beacon to asset";
             resultContainer.innerText = beaconResult + '</br>' + assetResult;
@@ -46,23 +46,21 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                  if (this.readyState == 4 && this.status == 200) {
-                     //alert(this.responseText);
+                     buttonContainer.disabled = false;
+                     messageContainer.innerText = "Done";
+                     resultContainer.innerText = "" 
                  }
             };
             xhttp.open("GET", "http://127.0.0.1:1880/assign?device=123&asset=456", true);
             xhttp.send();
-            
         } else if (state == 3) {
             buttonContainer.disabled = false;
-            messageContainer.innerText = "Done";
-            resultContainer.innerText = "";   
         }
     }
     
     function docReady(fn) {
         // see if DOM is already available
-        if (document.readyState === "complete"
-            || document.readyState === "interactive") {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
             // call on next available tick
             setTimeout(fn, 1);
         } else {
@@ -75,6 +73,8 @@
             if (decodedText !== lastResult) {
                 lastResult = decodedText;
                 resultContainer.innerText = decodedText;
+                
+                buttonContainer.disabled = false;
             }
         }
 

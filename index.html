@@ -8,6 +8,7 @@
     <button id="qr-reader-button" type="button" disabled onclick="buttonClicked()" style="width:100%">Next</button>
 </body>
 <script src="./html5-qrcode.min.js"></script>
+<script src="./html5-qrcode.min.js"></script>
 <script>
     var messageContainer = document.getElementById('qr-reader-message');
     var readerContainer = document.getElementById('qr-reader');
@@ -70,7 +71,13 @@
         html5QrcodeScanner.render(onScanSuccess);
         
         messageContainer.innerText = "Please scan QR code of beacon";
-    });
+        
+        const userAction = async () => {
+            const response = await fetch('http://127.0.0.1/assign?device=123&asset=456');
+            const myJson = await response.json(); //extract JSON from the http response
+                messageContainer.innerText = myJson;
+            }
+        });
 </script>
 </head>
 </html>

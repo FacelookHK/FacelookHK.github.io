@@ -28,17 +28,17 @@
         
         if (state == 0) {
             buttonContainer.disabled = true;
-            messageContainer.innerText = "Please scan QR code of beacon.";
+            messageContainer.innerHTML = "<h1>Please scan QR code of beacon.</h1>";
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
             buttonContainer.disabled = true;
-            messageContainer.innerText = "Please scan QR code of asset.";
+            messageContainer.innerHTML = "<h1>Please scan QR code of asset.</h1>";
             resultContainer.innerText = "";
         } else if (state == 2) {
             buttonContainer.disabled = true;
-            messageContainer.innerText = "Assigning beacon to asset...";
-            resultContainer.innerText = "http://127.0.0.1:1880/assign?device=" + beaconResult + "&asset=" + assetResult;
+            messageContainer.innerHTML = "<h1>Assigning beacon to asset...</h1>";
+            resultContainer.innerText = "Device: " + beaconResult + " Asset: " + assetResult;
             readerContainer.style.display = "none";
             
             setTimeout(function() {
@@ -73,16 +73,16 @@
                 
                 var index = decodedText.lastIndexOf('\n');
                 if (index != -1) {
-                    var decodedText2 = decodedText.substring(index + 1);
+                    decodedText = lastResult.substring(index + 1);
                     if (state == 0) {
-                        if (decodedText.indexOf('Beacon') == 0) {
-                            beaconResult = decodedText2;
+                        if (lastResult.indexOf('Beacon') == 0) {
+                            beaconResult = decodedText;
                         } else {
                             return;
                         }
                     } else if (state == 1) {
-                        if (decodedText.indexOf('Seating') == 0 || decodedText.indexOf('Person') == 0) {
-                            assetResult = decodedText2;
+                        if (lastResult.indexOf('Seating') == 0 || lastResult.indexOf('Person') == 0) {
+                            assetResult = decodedText;
                         } else {
                             return;
                         }
@@ -98,7 +98,7 @@
             "qr-reader", { fps: 10, qrbox: 300 });
         html5QrcodeScanner.render(onScanSuccess);
         
-        messageContainer.innerText = "Please scan QR code of beacon";
+        messageContainer.innerHTML= "<h1>Please scan QR code of beacon.</h1>";
     });
 </script>
 </head>

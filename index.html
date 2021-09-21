@@ -16,27 +16,25 @@
     var buttonContainer = document.getElementById('qr-reader-button');
     var beaconResult = null;
     var assetResult = null;
-    var lastResult = 0;
+    var lastResult = null;
     var state = 0;
     
     function buttonClicked() {
-        state++;
+        lastResult = null;
+        buttonContainer.disabled = true;
         
-        if (state > 2) {
+        if (++state > 2) {
             state = 0;
         }
         
         if (state == 0) {
-            buttonContainer.disabled = true;
             messageContainer.innerHTML = "<h1>Please scan QR code of beacon.</h1>";
             resultContainer.innerText = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
-            buttonContainer.disabled = true;
             messageContainer.innerHTML = "<h1>Please scan QR code of asset.</h1>";
             resultContainer.innerText = "";
         } else if (state == 2) {
-            buttonContainer.disabled = true;
             messageContainer.innerHTML = "<h1>Assigning beacon to asset...</h1>";
             resultContainer.innerText = "Device: " + beaconResult + " Asset: " + assetResult;
             readerContainer.style.display = "none";

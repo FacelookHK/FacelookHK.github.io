@@ -78,8 +78,7 @@
                  alert(this.responseText);
              }
         };
-        xhttp.open("GET", "http://127.0.0.1:1880/assign", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.open("GET", "http://127.0.0.1:1880/assign&device=123&asset=456", true);
         xhttp.send();
     });
 </script>

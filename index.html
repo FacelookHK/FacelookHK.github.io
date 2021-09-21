@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Html-Qrcode Demo</title>
+    <title>QR Code Scanner</title>
 <body>
     <div id="qr-reader-message"></div>
     <div id="qr-reader" style="width:50%"></div>
@@ -73,16 +73,16 @@
                 
                 var index = decodedText.lastIndexOf('\n');
                 if (index != -1) {
-                    decodedText = decodedText.substring(index + 1);
+                    var decodedText2 = decodedText.substring(index + 1);
                     if (state == 0) {
                         if (decodedText.indexOf('Beacon') == 0) {
-                            beaconResult = decodedText;
+                            beaconResult = decodedText2;
                         } else {
                             return;
                         }
                     } else if (state == 1) {
                         if (decodedText.indexOf('Seating') == 0 || decodedText.indexOf('Person') == 0) {
-                            assetResult = decodedText;
+                            assetResult = decodedText2;
                         } else {
                             return;
                         }

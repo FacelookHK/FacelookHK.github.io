@@ -27,7 +27,7 @@
             messageContainer.innerText = "Please scan QR code of beacon";
             buttonContainer.disabled = true;
             resultContainer.innerText = "";
-            readerContainer.style.visibility = "visible";
+            readerContainer.style.display = "block";
         } else if (state == 1) {
             messageContainer.innerText = "Please scan QR code of asset";
             buttonContainer.disabled = true;
@@ -35,7 +35,7 @@
         } else if (state == 2) {
             messageContainer.innerText = "Assign beacon to asset";
             resultContainer.innerText = "";
-            readerContainer.style.visibility = "hidden";
+            readerContainer.style.display = "none";
         } else if (state == 3) {
             messageContainer.innerText = "Done";
             resultContainer.innerText = "";   

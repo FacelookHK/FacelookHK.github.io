@@ -5,7 +5,7 @@
     <div id="qr-reader-message"></div>
     <div id="qr-reader" style="width:50%"></div>
     <div id="qr-reader-result"></div>
-    <button id="qr-reader-button" type="button" onclick="buttonClicked()" style="width:100%" disabled>Next</button>
+    <button id="qr-reader-button" type="button" onclick="buttonClicked()" style="width:50%" disabled>Next</button>
 </body>
 <script src="./html5-qrcode.min.js"></script>
 <script src="./html5-qrcode.min.js"></script>
@@ -40,7 +40,7 @@
             buttonContainer.disabled = true;
             assetResult = lastResult;
             messageContainer.innerText = "Assigning beacon to asset...";
-            resultContainer.innerText = beaconResult + '</br>' + assetResult;
+            resultContainer.innerText = beaconResult + '\r\n' + assetResult;
             readerContainer.style.display = "none";
             
             /*
@@ -72,7 +72,7 @@
         function onScanSuccess(decodedText, decodedResult) {
             if (decodedText !== lastResult) {
                 lastResult = decodedText;
-                resultContainer.innerText = decodedText;
+                resultContainer.innerText = decodedText + decodedText.indexOf('\r\n');
                 
                 buttonContainer.disabled = false;
             }

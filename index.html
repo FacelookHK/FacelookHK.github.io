@@ -72,12 +72,18 @@
         
         messageContainer.innerText = "Please scan QR code of beacon";
         
-        const userAction = async () => {
-            const response = await fetch('http://127.0.0.1:1880/assign?device=123&asset=456');
-            const myJson = await response.json(); //extract JSON from the http response
-                messageContainer.innerText = myJson;
-            }
-        });
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+                 alert(this.responseText);
+             }
+        };
+        xhttp.open("POST", "http://127.0.0.1:1880/assign", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        var payload = {
+            'test': 123
+        };
+        xhttp.send(JSON.stringify(payload));
 </script>
 </head>
 </html>

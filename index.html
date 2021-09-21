@@ -75,9 +75,17 @@
                 if (index != -1) {
                     decodedText = decodedText.substring(index + 1);
                     if (state == 0) {
-                        beaconResult = decodedText;
+                        if (beaconResult.indexOf('Beacon') == 0) {
+                            beaconResult = decodedText;
+                        } else {
+                            return;
+                        }
                     } else if (state == 1) {
-                        assetResult = decodedText;
+                        if (assetResult.indexOf('Seating') == 0 || assetResult.indexOf('Person') == 0) {
+                            assetResult = decodedText;
+                        } else {
+                            return;
+                        }
                     }
                     resultContainer.innerText = lastResult;
                   

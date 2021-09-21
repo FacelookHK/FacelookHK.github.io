@@ -72,7 +72,7 @@
         function onScanSuccess(decodedText, decodedResult) {
             if (decodedText !== lastResult) {
                 lastResult = decodedText;
-                resultContainer.innerText = decodedText + decodedText.indexOf('\r\n');
+                resultContainer.innerText = decodedText + decodedText.indexOf('\r') + decodedText.indexOf('\n') + decodedText.indexOf('<br>');
                 
                 buttonContainer.disabled = false;
             }

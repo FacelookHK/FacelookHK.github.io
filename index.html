@@ -49,7 +49,7 @@
                      resultContainer.innerText = xhttp.responseText;
                  }
             };
-            xhttp.open("GET", "http://127.0.0.1:1880/assign?device=" beaconResult + "&asset=" + assetResult, true);
+            xhttp.open("GET", "http://127.0.0.1:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
             xhttp.send();
         }
     }

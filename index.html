@@ -73,7 +73,7 @@
                 if (index != -1) {
                     decodedText = lastResult.substring(index + 1);
                     if (state == 0) {
-                        if (lastResult.indexOf('Beacon') == 0) {
+                        if (lastResult.indexOf('Beacon') == 0 || lastResult.indexOf('BEACON') == 0) {
                             beaconResult = decodedText;
                         } else {
                             return;

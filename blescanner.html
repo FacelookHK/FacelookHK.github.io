@@ -4,32 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-          content="Web app demonstrating how nearby Bluetooth Low Energy devices that are advertising can be discovered from within a web browser, without the need for a native app!">
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/reelyactive.css">
     <title>BLE Scanner</title>
-    <!----- Structured, linked metadata (JSON-LD & Schema.org) ----->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org", 
-      "@type": "WebApplication",
-      "name": "reelyActive Web BLE Demo",
-      "description": "Web app demonstrating how nearby Bluetooth Low Energy devices that are advertising can be discovered from within a web browser, without the need for a native app!",
-      "license": "https://opensource.org/licenses/MIT",
-      "isAccessibleForFree": true,
-      "applicationCategory": "Client-side",
-      "browserRequirements": "Requires a browser that supports Web Bluetooth and the experimental scanning feature.",
-      "image": "https://reelyactive.github.io/web-ble-demo/images/header.jpg",
-      "author": {
-        "@type": "Organization",
-        "url": "https://www.reelyactive.com"
-      }
-    }
-    </script>
   </head>
   <body>
-    <!-- Content -->
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
@@ -58,7 +37,6 @@
             <tbody id="devicestbody">
             </tbody>
           </table>
-          <p><small class="text-muted"> * the transmitterID is not the 48-bit Bluetooth advertiser address but rather a <a href="https://webbluetoothcg.github.io/web-bluetooth/#bluetooth-device-identifiers" target="_blank">128-bit Identity Resolving Key</a>. </small></p>
         </div>
       </div>
     <script defer src="js/solid.min.js"></script>

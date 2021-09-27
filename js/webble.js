@@ -20,7 +20,6 @@ let devicestbody = document.querySelector('#devicestbody');
 
 // Attempt to run the experimental requestLEScan function
 async function scanForAdvertisements() {
-  console.log('abc');
   try {
     const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
     let numberOfEvents = 0;
@@ -60,10 +59,11 @@ async function scanForAdvertisements() {
 
 // Handle a scan event
 function handleScanEvent(event) {
-  console.log(event.rssi, event);
+  console.log(event.rssi);
   if (event.rssi < -60) {
       return;
   }
+  console.log(event);
   let deviceId = base64toHex(event.device.id);
   let tr = document.getElementById(deviceId);
   if(tr) {

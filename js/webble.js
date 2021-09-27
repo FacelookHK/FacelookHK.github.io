@@ -59,6 +59,7 @@ async function scanForAdvertisements() {
 
 // Handle a scan event
 function handleScanEvent(event) {
+  console.log(event);
   let deviceId = base64toHex(event.device.id);
   let tr = document.getElementById(deviceId);
   if(tr) {

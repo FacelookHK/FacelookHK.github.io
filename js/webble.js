@@ -20,6 +20,7 @@ let devicestbody = document.querySelector('#devicestbody');
 
 // Attempt to run the experimental requestLEScan function
 async function scanForAdvertisements() {
+  console.log('abc');
   try {
     const scan = await navigator.bluetooth.requestLEScan(SCAN_OPTIONS);
     let numberOfEvents = 0;

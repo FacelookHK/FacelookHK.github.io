@@ -59,10 +59,10 @@ async function scanForAdvertisements() {
 
 // Handle a scan event
 function handleScanEvent(event) {
-  console.log(event.rssi);
-  if (event.rssi < -60) {
+  if (event.rssi < -400 {
       return;
   }
+  console.log(event.rssi);
   console.log(event);
   let deviceId = base64toHex(event.device.id);
   let tr = document.getElementById(deviceId);

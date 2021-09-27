@@ -59,7 +59,7 @@ async function scanForAdvertisements() {
 
 // Handle a scan event
 function handleScanEvent(event) {
-  if (event.rssi < -40 {
+  if (event.rssi < -40} {
       return;
   }
   console.log(event.rssi);

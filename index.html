@@ -43,7 +43,7 @@
                 xhttp.onreadystatechange = function() {
                      if (this.readyState == 4 && this.status == 200) {
                          buttonContainer.disabled = false;
-                         messageContainer.innerHTML = "<h1>Assigned beacon to asset successfully.<h1>";
+                         messageContainer.innerHTML = "<h1>Assigned beacon to asset.<h1>";
                          resultContainer.innerHTML = "<h2>" + JSON.parse(xhttp.responseText).response + "</h2>"
                      }
                 };

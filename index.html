@@ -35,7 +35,7 @@
             resultContainer.innerHTML = "";
         } else if (state == 2) {
             messageContainer.innerHTML = "<h1>Assigning beacon to asset...</h1>";
-            resultContainer.innerHTML = "<h3>Device: " + beaconResult + " Asset: " + assetResult + "</h3>";
+            resultContainer.innerHTML = "<h2>Device: " + beaconResult + " Asset: " + assetResult + "</h2>";
             readerContainer.style.display = "none";
             
             setTimeout(function() {
@@ -43,8 +43,8 @@
                 xhttp.onreadystatechange = function() {
                      if (this.readyState == 4 && this.status == 200) {
                          buttonContainer.disabled = false;
-                         messageContainer.innerHTML = "<h3>Assigned beacon to asset successfully.<h3>";
-                         resultContainer.innerHTML = "<h3>" + JSON.parse(xhttp.responseText).response + "</h3>"
+                         messageContainer.innerHTML = "<h1>Assigned beacon to asset successfully.<h1>";
+                         resultContainer.innerHTML = "<h2>" + JSON.parse(xhttp.responseText).response + "</h2>"
                      }
                 };
                 xhttp.open("GET", "http://127.0.0.1:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
@@ -84,7 +84,7 @@
                             return;
                         }
                     }
-                    resultContainer.innerHTML = "<h3>" + lastResult + "</h3>";
+                    resultContainer.innerHTML = "<h2>" + lastResult + "</h2>";
                   
                     buttonContainer.disabled = false;
                 }

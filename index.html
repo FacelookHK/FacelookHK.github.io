@@ -28,14 +28,14 @@
         
         if (state == 0) {
             messageContainer.innerHTML = "<h1>Please scan QR code of beacon.</h1>";
-            resultContainer.innerText = "";
+            resultContainer.innerHTML = "";
             readerContainer.style.display = "block";
         } else if (state == 1) {
             messageContainer.innerHTML = "<h1>Please scan QR code of asset.</h1>";
-            resultContainer.innerText = "";
+            resultContainer.innerHTML = "";
         } else if (state == 2) {
             messageContainer.innerHTML = "<h1>Assigning beacon to asset...</h1>";
-            resultContainer.innerText = "Device: " + beaconResult + " Asset: " + assetResult;
+            resultContainer.innerHTML = "<h3>Device: " + beaconResult + " Asset: " + assetResult + "</h3>";
             readerContainer.style.display = "none";
             
             setTimeout(function() {
@@ -43,8 +43,8 @@
                 xhttp.onreadystatechange = function() {
                      if (this.readyState == 4 && this.status == 200) {
                          buttonContainer.disabled = false;
-                         messageContainer.innerText = "Assigned beacon to asset successfully.";
-                         resultContainer.innerText = JSON.parse(xhttp.responseText).response;
+                         messageContainer.innerHTML = "<h3>Assigned beacon to asset successfully.<h3>";
+                         resultContainer.innerHTML = "<h3>" + JSON.parse(xhttp.responseText).response + "</h3>"
                      }
                 };
                 xhttp.open("GET", "http://127.0.0.1:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
@@ -92,7 +92,7 @@
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 300 });
+            "qr-reader", { fps: 10, qrbox: 240 });
         html5QrcodeScanner.render(onScanSuccess);
         
         messageContainer.innerHTML= "<h1>Please scan QR code of beacon.</h1>";

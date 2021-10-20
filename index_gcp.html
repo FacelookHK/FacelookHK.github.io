@@ -41,12 +41,14 @@
             setTimeout(function() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
+                     resultContainer.innerHTML = this.readyState;
                      if (this.readyState == 4 && this.status == 200) {
                          buttonContainer.disabled = false;
                          messageContainer.innerHTML = "<h1>Assigned beacon to asset.<h1>";
                          resultContainer.innerHTML = "<h2>" + JSON.parse(xhttp.responseText).response + "</h2>"
                      }
                 };
+                resultContainer.innerHTML = "<a href="http://35.220.201.64:1880/assign?device">test</a>"
                 //xhttp.open("GET", "http://35.220.201.64:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
                 xhttp.open("GET", "http://35.220.201.64:1880/assign?device", true);
                 xhttp.send();

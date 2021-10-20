@@ -39,7 +39,7 @@
             readerContainer.style.display = "none";
             
             setTimeout(function() {
-            var xhttp = new XMLHttpRequest();
+                var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                      if (this.readyState == 4 && this.status == 200) {
                          buttonContainer.disabled = false;
@@ -47,7 +47,8 @@
                          resultContainer.innerHTML = "<h2>" + JSON.parse(xhttp.responseText).response + "</h2>"
                      }
                 };
-                xhttp.open("GET", "http://35.220.201.64:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
+                //xhttp.open("GET", "http://35.220.201.64:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
+                xhttp.open("GET", "http://35.220.201.64:1880/assign?device", true);
                 xhttp.send();
             }, 2000);
         }
@@ -91,8 +92,7 @@
             }
         }
 
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 240 });
+        var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 240 });
         html5QrcodeScanner.render(onScanSuccess);
         
         messageContainer.innerHTML= "<h1>Please scan QR code of beacon.</h1>";

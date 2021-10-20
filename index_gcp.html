@@ -1,0 +1,102 @@
+<html>
+<head>
+    <title>QR Code Scanner</title>
+<body>
+    <div id="qr-reader-message"></div>
+    <div id="qr-reader" style="width:60%"></div>
+    <div id="qr-reader-result"></div>
+    <button id="qr-reader-button" type="button" onclick="buttonClicked()" style="width:60%" disabled>Next</button>
+</body>
+<script src="./js/html5-qrcode.min.js"></script>
+<script>
+    var messageContainer = document.getElementById('qr-reader-message');
+    var readerContainer = document.getElementById('qr-reader');
+    var resultContainer = document.getElementById('qr-reader-result');
+    var buttonContainer = document.getElementById('qr-reader-button');
+    var beaconResult = null;
+    var assetResult = null;
+    var lastResult = null;
+    var state = 0;
+    
+    function buttonClicked() {
+        lastResult = null;
+        buttonContainer.disabled = true;
+        
+        if (++state > 2) {
+            state = 0;
+        }
+        
+        if (state == 0) {
+            messageContainer.innerHTML = "<h1>Please scan QR code of beacon.</h1>";
+            resultContainer.innerHTML = "";
+            readerContainer.style.display = "block";
+        } else if (state == 1) {
+            messageContainer.innerHTML = "<h1>Please scan QR code of asset.</h1>";
+            resultContainer.innerHTML = "";
+        } else if (state == 2) {
+            messageContainer.innerHTML = "<h1>Assigning beacon to asset...</h1>";
+            resultContainer.innerHTML = "<h2>Device: " + beaconResult + " Asset: " + assetResult + "</h2>";
+            readerContainer.style.display = "none";
+            
+            setTimeout(function() {
+            var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                     if (this.readyState == 4 && this.status == 200) {
+                         buttonContainer.disabled = false;
+                         messageContainer.innerHTML = "<h1>Assigned beacon to asset.<h1>";
+                         resultContainer.innerHTML = "<h2>" + JSON.parse(xhttp.responseText).response + "</h2>"
+                     }
+                };
+                xhttp.open("GET", "http://35.220.201.64:1880/assign?device=" + beaconResult + "&asset=" + assetResult, true);
+                xhttp.send();
+            }, 2000);
+        }
+    }
+    
+    function docReady(fn) {
+        // see if DOM is already available
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            // call on next available tick
+            setTimeout(fn, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
+    }
+
+    docReady(function () {
+        function onScanSuccess(decodedText, decodedResult) {
+            if (decodedText !== lastResult) {
+                lastResult = decodedText;
+                
+                var index = decodedText.lastIndexOf('\n');
+                if (index != -1) {
+                    decodedText = lastResult.substring(index + 1);
+                    if (state == 0) {
+                        if (lastResult.indexOf('Beacon') == 0 || lastResult.indexOf('BLE Beacon') == 0) {
+                            beaconResult = decodedText;
+                        } else {
+                            return;
+                        }
+                    } else if (state == 1) {
+                        if (lastResult.indexOf('Seating') == 0 || lastResult.indexOf('Person') == 0) {
+                            assetResult = decodedText;
+                        } else {
+                            return;
+                        }
+                    }
+                    resultContainer.innerHTML = "<h2>" + lastResult + "</h2>";
+                  
+                    buttonContainer.disabled = false;
+                }
+            }
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-reader", { fps: 10, qrbox: 240 });
+        html5QrcodeScanner.render(onScanSuccess);
+        
+        messageContainer.innerHTML= "<h1>Please scan QR code of beacon.</h1>";
+    });
+</script>
+</head>
+</html>
